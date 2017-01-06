@@ -1,0 +1,178 @@
+<head>
+<link rel="stylesheet" type="text/css" href="home.css">
+<script type="text/javascript">
+var $ = function(x) {
+  return document.getElementById(x);
+}
+
+var createXMLHttp = function() {
+
+  if (window.XMLHttpRequest) {
+    xHttp = new XMLHttpRequest();
+  } else {
+    xHttp = new ActiveXObject("Microsoft/XMLHttp");
+  }
+  return xHttp;
+}
+var userOnBlurHandle = function() {
+  if ($("userId").value.length < 5) {
+
+    $("userIdError").innerHTML = "User name has to be at least 5 characters long.";
+  } else {
+    var urlOfService = 'checkUser.php?userName=' + $("userId").value;
+    var XMLHttp = createXMLHttp();
+    XMLHttp.open("GET", urlOfService);
+    XMLHttp.send();
+    XMLHttp.onreadystatechange = function() {
+      if (XMLHttp.readyState == 4) {
+        var response = XMLHttp.responseText;
+        if (response == "0") {
+          $("userIdError").innerHTML = "service didnt get username";
+        } else if (response == "1") {
+          $("userIdError").innerHTML = "username not available";
+        } else {
+          $("userIdError").innerHTML = "&#10004";
+        }
+      }
+    }
+
+  }
+}
+var buttonClickHandle = function() {
+  var flag = 1;
+  if ($("userId").value.length < 5) {
+    flag = 0;
+  }
+  if (isNaN($("ageId").value)) {
+    $("ageIdError").innerHTML = "Age needs to be a number";
+    flag = 0;
+  }
+
+  if ($("emailId").value.length < 6 || $("emailId").value.indexOf("@") < 0 || $("emailId").value.indexOf(".com") < 0) {
+    $("emailIdError").innerHTML = "email is incorrect (must be a .com address)";
+    flag = 0;
+  }
+  if ($("passwordId").value.length < 5) {
+    $("passwordIdError").innerHTML = "Password is not long enough.";
+    flag = 0;
+  }
+
+  if (flag == 1) {
+    $("formId").submit();
+  }
+}
+var emailOnBlurHandle = function() {
+  if ($("emailId").value.length < 6 || $("emailId").value.indexOf("@") < 0 || $("emailId").value.indexOf(".com") < 0) {
+    $("emailIdError").innerHTML = "email is incorrect (must be a .com address)";
+  } else {
+    $("emailIdError").innerHTML = "&#10004";
+  }
+}
+var passwordOnBlurHandle = function() {
+  if ($("passwordId").value.length < 5) {
+    $("passwordIdError").innerHTML = "Password is not long enough.";
+
+  } else {
+    $("passwordIdError").innerHTML = "&#10004";
+  }
+}
+var ageOnBlurHandle = function() {
+  if ($("ageId").value.length != 2 || isNaN($("ageId").value)) {
+    $("ageIdError").innerHTML = "Must be 10 years or older";
+  } else {
+    $("ageIdError").innerHTML = "&#10004";
+  }
+}
+var addLocationHandle = function() {
+
+  var count = $("locations").getElementsByTagName("div").length;
+  var nextLocationId = count + 1;
+
+  var div = document.createElement("div");
+
+  div.setAttribute("id", "locationdiv" + nextLocationId);
+
+  $("locations").appendChild(div);
+
+  var label = document.createElement("label");
+  label.setAttribute("for", "location" + nextLocationId);
+  label.innerHTML = "Location" + nextLocationId + " ";
+  div.appendChild(label);
+
+  var input = document.createElement("input");
+  input.setAttribute("type", "text");
+  input.setAttribute("name", "location" + nextLocationId);
+  input.setAttribute("id", "location" + nextLocationId);
+  div.appendChild(input);
+
+  var input2 = document.createElement("input");
+  input2.setAttribute("type", "button");
+  input2.setAttribute("id", "remove" + nextLocationId);
+  input2.setAttribute("value", "Remove location " + nextLocationId);
+  div.appendChild(input2);
+  
+  input2.onclick = removeLocationHandle;
+
+}
+var removeLocationHandle = function() {
+
+  var removeLocationClicked = this.getAttribute("id");
+
+ this.parentNode.parentNode.removeChild(this.parentNode);
+
+}
+
+window.onload = function() {
+
+  $("userId").onblur = userOnBlurHandle;
+  $("buttonId").onclick = buttonClickHandle;
+  $("emailId").onblur = emailOnBlurHandle;
+  $("addLocation").onclick = addLocationHandle;
+  $("passwordId").onblur = passwordOnBlurHandle;
+  $("ageId").onblur = ageOnBlurHandle;
+}
+</script>
+</head>
+
+<body>
+<nav class="header">
+   <img src="http://i64.tinypic.com/2qaift1.jpg" width="539" height="293" align="middle" alt="main logo">
+  </nav>
+ 
+<form method="post" id='formId' action="create_user.php">
+
+<h1> Username </h1>
+<label for="userId"></label> 
+<input type="text" name="userName" id="userId">
+<span id="userIdError">*</span><br>
+
+<h1> Password </h1>
+<label for="passwordId"></label> 
+<input type="password" name="passwordName" id="passwordId">
+<span id="passwordIdError">*</span><br>
+  
+<h1> Age </h1>
+<label for="ageId"></label> 
+<input type="text" name="ageName" id="ageId">
+<span id="ageIdError">*</span><br>
+
+<h1> Email </h1>
+<label for="emailId"></label> 
+<input type="text" name="emailName" id="emailId">
+<span id="emailIdError">*</span><br>
+
+<h1> Address </h1>
+<section id="locations">
+ <div id='locationdiv1'>
+  <label for='location1'>Location1</label>
+  <input type="text" name='location1' id='location1'>
+ </div>
+ 
+</section>
+
+<input type="button" id="addLocation" value="Add another location"><br>
+<br><br>
+<input type='button' id='buttonId' value='Submit form'>
+
+</body>
+</form>

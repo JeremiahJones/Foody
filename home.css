@@ -1,0 +1,89 @@
+html, body, h1, h2, h3, h4, ul, ol, li, p, a {
+  padding: 0;
+  border: 0;
+  margin: 0; 
+}
+body {
+  background: #e8e1b0;
+  display: block;
+  padding: 20px 20px 20px 20px;
+  margin: auto 20px;
+}
+h1 {
+margin: 0 auto 0 auto;
+font-family: Helvetica, Arial, sans;
+}
+h2 {
+color: #0c1538;
+font-family: Helvetica, Arial, sans;
+  }
+input[type= submit] {
+max-width: 100%;
+font-size: 20px;
+  font-family: Helvetica, Arial, sans;
+  text-transform: uppercase;
+}
+input[type= submit]:hover {
+	box-shadow: inset 2px 2px 0 #000,
+	2px 3px 0 #000;
+}
+
+.header img {
+  display: block;
+  margin: 0 auto 0 auto;
+}
+.photos img {
+  display: inline;
+  margin: 15px 15px 15px 15px;
+  width: 200px;
+  height: 100px;
+}
+.photos {
+  list-style-type: none;
+  padding: 0;
+  background: #0c1536 top left repeat; 
+}
+.photos li {
+  display: inline;
+  padding-left: 11px;
+  -webkit-filter: grayscale(0%);
+-moz-filter: grayscale(0%);
+filter: grayscale(0%);
+}
+.photos li a:hover {
+-webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+filter: grayscale(100%);
+  transition: all 0.4s ease-in-out;
+}
+.navtab {
+  padding: 0;
+  text-align: center;
+}
+.navtab li {
+  display: inline;
+  padding-right: 20px;
+}
+.navtab li:last-child {
+  padding-right: 0;
+}
+.navtab a {
+  color: #96493f;
+  font-family: Helvetica, Arial, sans;
+  font-weight: bold;
+  font-size: 30px;
+}
+.navtab a:hover {
+  color: #000000;
+}
+.newlink a:hover {
+  color: #00aF00;
+}
+.dropdown {
+	width: 200px;
+	height: 200px;
+	
+}
+.stars {
+	width: 200px;
+}

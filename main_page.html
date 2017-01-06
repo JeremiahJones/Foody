@@ -1,0 +1,46 @@
+<?php
+include("connect.php");
+include("verify.php");
+if(empty($_POST['username']) || empty($_POST['password'])){
+header("location:home.html");}
+?>
+
+<head>
+<link rel="stylesheet" type="text/css" href="home.css">
+</head>
+
+<body>
+  <nav class="header">
+   <a href="main_page.html"><img src="http://i64.tinypic.com/2qaift1.jpg" width="539" height="293" align="middle" alt="main logo"></a>
+    <ul class="navtab">
+        <li><a href="genreSelect.html">Genre</a></li>
+        <li><a href="price.html">Price</a></li>
+        <li><a href="stars.html">Stars</a></li>
+       <li><a href="location.html">Location</a></li>
+	   <li><a href="logout.php">Logout</a></li>
+      </ul>
+  </nav>
+  <h1>Genres</h1>
+<ul class="photos">
+  <li><a href="genreSelect.html"><img src="images/italian.jpg" alt="Italian Food"></a></li>
+  <li><a href="genreSelect.html"><img src="images/mexican.png" alt="Mexican"></a></li>
+  <li><a href="genreSelect.html"><img src="images/american.jpg" alt="American"></a></li>
+</ul>
+  <h1>Price</h1>
+<ul class="photos">
+  <li><a href="price.html"><img src="images/1diamond.png" alt="1 Diamond Pricing"></a></li>
+  <li><a href="price.html"><img src="images/2diamond.png" alt="2 Diamond Pricing"></a></li>
+  <li><a href="price.html"><img src="images/3diamond.png" alt="3 Diamond Pricing"></a></li>
+</ul>
+
+  <h1>Stars</h1>
+<ul class="photos">
+<li><a href="stars.html"><img src="images/1star.png" alt="1 Star Rating"></a></li>
+  <li><a href="stars.html"><img src="images/2star.png" alt="2 Star Rating"></a></li>
+  <li><a href="stars.html"><img src="images/3star.png" alt="3 Star Rating"></a></li>
+  <li><a href="stars.html"><img src="images/4star.png" alt="4 Star Rating"></a></li>
+  <li><a href="stars.html"><img src="images/5star.png" alt="5 Star Rating"></a></li>
+</ul>
+  
+  
+</body>
